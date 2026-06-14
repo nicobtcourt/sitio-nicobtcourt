@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NANY MOTOS — Montevideo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --negro: #0D0D0D;
+    --blanco: #F0F0F0;
+    --rojo: #C8001E;
+    --gris: #3A3A3A;
+    --naranja: #E85D04;
+    --gris-claro: #1A1A1A;
+    --gris-medio: #2A2A2A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(13,13,13,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #222;
+    transition: padding 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.12em;
+    color: var(--blanco);
+  }
+
+  .nav-logo span { color: var(--rojo); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #999;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--blanco); }
+
+  .nav-cta {
+    background: var(--rojo);
+    color: white !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2px;
+    font-weight: 500 !important;
+  }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 75% 50%, rgba(200,0,30,0.08) 0%, transparent 60%),
+      linear-gradient(135deg, #0D0D0D 0%, #1a0a0a 100%);
+  }
+
+  .hero-moto-svg {
+    position: absolute;
+    right: -2%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 58%;
+    max-width: 820px;
+    opacity: 0.92;
+  }
+
+  .hero-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--rojo);
+    vertical-align: middle;
+    margin-right: 0.8rem;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--rojo);
+  }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: #888;
+    max-width: 360px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-primary {
+    background: var(--rojo);
+    color: white;
+    border: none;
+    padding: 0.85rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .btn-primary:hover { background: #a8001a; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--blanco);
+    border: 1px solid #444;
+    padding: 0.85rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--blanco); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--blanco);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #555;
+    margin-top: 0.2rem;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: #444;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, #444, transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* SECCIÓN CATÁLOGO */
+  section {
+    padding: 5rem 2.5rem;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #1f1f1f;
+    padding-bottom: 1.5rem;
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  /* FILTROS */
+  .filters {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    color: #777;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--rojo);
+    border-color: var(--rojo);
+    color: white;
+  }
+
+  /* GRID MOTOS */
+  .motos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.5px;
+  }
+
+  .moto-card {
+    background: var(--gris-claro);
+    border: 1px solid #1a1a1a;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s, border-color 0.25s;
+    position: relative;
+  }
+
+  .moto-card:hover {
+    transform: translateY(-4px);
+    border-color: #333;
+    z-index: 2;
+  }
+
+  .moto-card:hover .moto-img-wrap { background: #1f1518; }
+
+  .moto-img-wrap {
+    height: 200px;
+    background: #141414;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: background 0.3s;
+    position: relative;
+  }
+
+  .moto-img-wrap svg {
+    width: 85%;
+    height: 85%;
+    transition: transform 0.3s;
+  }
+
+  .moto-card:hover .moto-img-wrap svg { transform: scale(1.04); }
+
+  .moto-badge {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .badge-nuevo { background: var(--rojo); color: white; }
+  .badge-oferta { background: var(--naranja); color: white; }
+  .badge-agotado { background: #333; color: #888; }
+
+  .moto-info {
+    padding: 1.2rem;
+    border-top: 1px solid #1f1f1f;
+  }
+
+  .moto-marca {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 0.25rem;
+  }
+
+  .moto-modelo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .moto-specs {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.7rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+
+  .moto-precio {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .precio-usd {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--blanco);
+    letter-spacing: 0.02em;
+  }
+
+  .precio-usd span {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    margin-right: 0.3rem;
+  }
+
+  .btn-ver {
+    background: transparent;
+    border: 1px solid #333;
+    color: #888;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-ver:hover { border-color: var(--rojo); color: var(--rojo); }
+
+  /* SERVICIOS */
+  #servicios { background: var(--gris-claro); }
+
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    margin-top: 2.5rem;
+    border: 1px solid #222;
+  }
+
+  .servicio-item {
+    padding: 2rem;
+    background: var(--negro);
+    border: 1px solid #1a1a1a;
+    transition: background 0.2s;
+  }
+
+  .servicio-item:hover { background: #111; }
+
+  .servicio-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(200,0,30,0.12);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  .servicio-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+
+  .servicio-desc {
+    font-size: 0.82rem;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* BANDA ROJA */
+  .banda {
+    background: var(--rojo);
+    padding: 3rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .banda h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    max-width: 500px;
+  }
+
+  /* CONTACTO */
+  #contacto { background: var(--negro); }
+
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 2.5rem;
+  }
+
+  .contacto-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+
+  .contacto-info p {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .dato-contacto {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .dato-icon {
+    width: 36px;
+    height: 36px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .dato-texto {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .dato-texto strong {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 0.15rem;
+  }
+
+  .form-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #555;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: #111;
+    border: 1px solid #222;
+    color: var(--blanco);
+    padding: 0.7rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--rojo); }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-group select option { background: #111; }
+
+  /* FOOTER */
+  footer {
+    background: #050505;
+    border-top: 1px solid #1a1a1a;
+    padding: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+  }
+
+  .footer-logo span { color: var(--rojo); }
+
+  .footer-text {
+    font-size: 0.72rem;
+    color: #444;
+    text-align: center;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-link {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #222;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .social-link:hover { border-color: var(--rojo); color: var(--rojo); }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    max-width: 780px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    animation: modalIn 0.2s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #888;
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover { color: var(--blanco); }
+
+  .modal-img {
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 300px;
+  }
+
+  .modal-img svg { width: 100%; height: auto; }
+
+  .modal-body { padding: 2rem; }
+
+  .modal-marca {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-modelo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .modal-specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin: 1.2rem 0;
+  }
+
+  .modal-spec {
+    background: #0d0d0d;
+    border: 1px solid #1f1f1f;
+    padding: 0.7rem;
+    border-radius: 2px;
+  }
+
+  .modal-spec-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 0.2rem;
+  }
+
+  .modal-spec-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+  }
+
+  .modal-precio {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--blanco);
+    margin: 1.2rem 0 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .modal-precio small {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #666;
+    display: block;
+    margin-bottom: 0.1rem;
+    font-weight: 400;
+  }
+
+  .notificacion {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--rojo);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    z-index: 9999;
+    transform: translateY(120%);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    letter-spacing: 0.05em;
+  }
+
+  .notificacion.show { transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .hero { padding: 0 1.2rem; }
+    section { padding: 3rem 1.2rem; }
+    .hero-moto-svg { opacity: 0.15; width: 90%; }
+    .contacto-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .modal { grid-template-columns: 1fr; }
+    .modal-img { min-height: 180px; }
+    .banda { flex-direction: column; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">NANY<span>MOTOS</span></div>
+  <ul class="nav-links">
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-cta">Contactar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+
+  <!-- Ilustración de moto SVG -->
+  <svg class="hero-moto-svg" viewBox="0 0 900 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Rueda trasera -->
+    <circle cx="220" cy="360" r="110" stroke="#2a2a2a" stroke-width="12"/>
+    <circle cx="220" cy="360" r="85" stroke="#1e1e1e" stroke-width="8"/>
+    <circle cx="220" cy="360" r="28" fill="#1a1a1a" stroke="#333" stroke-width="4"/>
+    <!-- Rayos trasero -->
+    <line x1="220" y1="275" x2="220" y2="335" stroke="#333" stroke-width="2.5"/>
+    <line x1="220" y1="385" x2="220" y2="445" stroke="#333" stroke-width="2.5"/>
+    <line x1="135" y1="360" x2="195" y2="360" stroke="#333" stroke-width="2.5"/>
+    <line x1="245" y1="360" x2="305" y2="360" stroke="#333" stroke-width="2.5"/>
+    <line x1="160" y1="300" x2="204" y2="344" stroke="#333" stroke-width="2.5"/>
+    <line x1="236" y1="376" x2="280" y2="420" stroke="#333" stroke-width="2.5"/>
+    <line x1="280" y1="300" x2="236" y2="344" stroke="#333" stroke-width="2.5"/>
+    <line x1="204" y1="376" x2="160" y2="420" stroke="#333" stroke-width="2.5"/>
+    <!-- Rueda delantera -->
+    <circle cx="680" cy="360" r="110" stroke="#2a2a2a" stroke-width="12"/>
+    <circle cx="680" cy="360" r="85" stroke="#1e1e1e" stroke-width="8"/>
+    <circle cx="680" cy="360" r="28" fill="#1a1a1a" stroke="#333" stroke-width="4"/>
+    <!-- Rayos delantero -->
+    <line x1="680" y1="275" x2="680" y2="335" stroke="#333" stroke-width="2.5"/>
+    <line x1="680" y1="385" x2="680" y2="445" stroke="#333" stroke-width="2.5"/>
+    <line x1="595" y1="360" x2="655" y2="360" stroke="#333" stroke-width="2.5"/>
+    <line x1="705" y1="360" x2="765" y2="360" stroke="#333" stroke-width="2.5"/>
+    <line x1="620" y1="300" x2="664" y2="344" stroke="#333" stroke-width="2.5"/>
+    <line x1="696" y1="376" x2="740" y2="420" stroke="#333" stroke-width="2.5"/>
+    <line x1="740" y1="300" x2="696" y2="344" stroke="#333" stroke-width="2.5"/>
+    <line x1="664" y1="376" x2="620" y2="420" stroke="#333" stroke-width="2.5"/>
+    <!-- Chasis -->
+    <path d="M280 340 L340 240 L480 220 L580 240 L640 280 L680 250" stroke="#C8001E" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M340 240 L360 340" stroke="#2a2a2a" stroke-width="6" fill="none"/>
+    <path d="M480 220 L460 340" stroke="#2a2a2a" stroke-width="6" fill="none"/>
+    <!-- Motor -->
+    <rect x="350" y="290" width="150" height="90" rx="6" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
+    <rect x="365" y="305" width="50" height="60" rx="3" fill="#222" stroke="#2a2a2a" stroke-width="1.5"/>
+    <rect x="425" y="305" width="60" height="60" rx="3" fill="#222" stroke="#2a2a2a" stroke-width="1.5"/>
+    <rect x="355" y="380" width="130" height="14" rx="3" fill="#333"/>
+    <!-- Carenado -->
+    <path d="M460 220 C480 180 560 165 620 185 L660 220 L640 280 L580 240 Z" fill="#111" stroke="#C8001E" stroke-width="3"/>
+    <!-- Tanque -->
+    <path d="M340 240 C380 210 460 205 480 220 L460 340 L360 340 Z" fill="#141414" stroke="#2a2a2a" stroke-width="2"/>
+    <!-- Carenado frontal -->
+    <path d="M640 220 C680 200 740 210 760 250 L740 300 L660 280 Z" fill="#0f0f0f" stroke="#333" stroke-width="2"/>
+    <!-- Faro -->
+    <ellipse cx="745" cy="248" rx="28" ry="20" fill="#0d0d0d" stroke="#E85D04" stroke-width="3"/>
+    <ellipse cx="745" cy="248" rx="16" ry="11" fill="#E85D04" opacity="0.5"/>
+    <!-- Asiento -->
+    <path d="M360 230 C400 215 470 210 490 215 L480 245 L355 248 Z" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="2" rx="4"/>
+    <!-- Escape -->
+    <path d="M370 370 C300 380 250 370 220 380" stroke="#555" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M220 380 C200 384 190 388 185 395" stroke="#444" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <!-- Horquilla delantera -->
+    <line x1="640" y1="280" x2="660" y2="360" stroke="#2a2a2a" stroke-width="8" stroke-linecap="round"/>
+    <line x1="660" y1="260" x2="680" y2="360" stroke="#2a2a2a" stroke-width="8" stroke-linecap="round"/>
+    <!-- Manillar -->
+    <path d="M660 220 C680 200 720 195 740 210" stroke="#444" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="740" cy="210" r="7" fill="#555"/>
+    <!-- Resplandor del faro -->
+    <path d="M762 240 L820 220 M762 248 L830 245 M762 256 L820 270" stroke="#E85D04" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
+  </svg>
+
+  <p class="hero-tag">Montevideo, Uruguay</p>
+  <h1>TU PRÓXIMA<br><em>MOTO</em><br>TE ESPERA</h1>
+  <p class="hero-sub">Las mejores marcas, servicio técnico certificado y financiación a medida. Desde 2009 en el corazón de Montevideo.</p>
+
+  <div class="hero-btns">
+    <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
+    <a href="#contacto" class="btn-ghost">Consultar</a>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">300+</div>
+      <div class="hero-stat-label">Modelos</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">15</div>
+      <div class="hero-stat-label">Años</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">4.9★</div>
+      <div class="hero-stat-label">Valoración</div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- CATÁLOGO -->
+<section id="catalogo">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Nuestros modelos</p>
+      <h2 class="section-title">Catálogo</h2>
+    </div>
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-filter="todas">Todas</button>
+    <button class="filter-btn" data-filter="naked">Naked</button>
+    <button class="filter-btn" data-filter="aventura">Aventura</button>
+    <button class="filter-btn" data-filter="sport">Sport</button>
+    <button class="filter-btn" data-filter="scooter">Scooter</button>
+    <button class="filter-btn" data-filter="custom">Custom</button>
+  </div>
+
+  <div class="motos-grid" id="motos-grid"></div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Lo que ofrecemos</p>
+      <h2 class="section-title">Servicios</h2>
+    </div>
+  </div>
+
+  <div class="servicios-grid">
+    <div class="servicio-item">
+      <div class="servicio-icon">🔧</div>
+      <h3 class="servicio-titulo">Taller Técnico</h3>
+      <p class="servicio-desc">Servicio técnico oficial para las principales marcas. Diagnóstico electrónico, mantenimiento y reparaciones con repuestos originales.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-icon">💳</div>
+      <h3 class="servicio-titulo">Financiación</h3>
+      <p class="servicio-desc">Planes de financiación en pesos uruguayos y dólares. Hasta 60 cuotas con las principales tarjetas e instituciones bancarias locales.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-icon">🔄</div>
+      <h3 class="servicio-titulo">Usadas Certificadas</h3>
+      <p class="servicio-desc">Compramos y vendemos motos usadas con certificación de calidad. Revisión de 50 puntos garantizada antes de la venta.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-icon">🛡️</div>
+      <h3 class="servicio-titulo">Seguro & Garantía</h3>
+      <p class="servicio-desc">Gestión de seguros con las mejores aseguradoras del país. Garantía extendida disponible en todos los modelos nuevos.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-icon">🎽</div>
+      <h3 class="servicio-titulo">Accesorios</h3>
+      <p class="servicio-desc">Cascos, guantes, indumentaria y equipamiento técnico de las mejores marcas. Todo lo que necesitás para rodar con seguridad.</p>
+    </div>
+    <div class="servicio-item">
+      <div class="servicio-icon">📋</div>
+      <h3 class="servicio-titulo">Patentamiento</h3>
+      <p class="servicio-desc">Nos ocupamos de todos los trámites: BPS, BNA, IMM, placas y documentación. Vos solo manejás, nosotros el papeleo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BANDA -->
+<div class="banda">
+  <h2>¿Tenés una moto usada? La compramos en el acto.</h2>
+  <a href="#contacto" class="btn-primary" style="background:white; color: #C8001E; white-space:nowrap;">Tasar mi moto</a>
+</div>
+
+<!-- NOSOTROS -->
+<section id="nosotros" style="background: #0a0a0a;">
+  <div style="max-width: 680px;">
+    <p class="section-label">Nuestra historia</p>
+    <h2 class="section-title" style="margin-bottom: 1.5rem;">Desde 2009<br>en Montevideo</h2>
+    <p style="color: #777; font-size: 0.92rem; line-height: 1.9; margin-bottom: 1rem;">
+      Nany Motos nació en el barrio de Pocitos con un solo objetivo: traer al mercado uruguayo motos de calidad real, sin vueltas. Quince años después seguimos en la misma calle, pero con un showroom de 1.200 m², taller propio y más de 8.000 clientes que ya ruedan con nosotros.
+    </p>
+    <p style="color: #555; font-size: 0.88rem; line-height: 1.8;">
+      Somos distribuidores oficiales de Honda, Yamaha, KTM y Royal Enfield para Uruguay. Nuestro equipo técnico tiene certificación internacional y todos nuestros mecánicos se capacitan anualmente en las casas matrices.
+    </p>
+    <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:1px; margin-top:2.5rem; background:#1a1a1a;">
+      <div style="background:#0a0a0a; padding:1.5rem; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2.5rem; color:var(--rojo);">8K+</div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555; margin-top:0.3rem;">Clientes</div>
+      </div>
+      <div style="background:#0a0a0a; padding:1.5rem; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2.5rem; color:var(--rojo);">4</div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555; margin-top:0.3rem;">Marcas oficiales</div>
+      </div>
+      <div style="background:#0a0a0a; padding:1.5rem; text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2.5rem; color:var(--rojo);">15</div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555; margin-top:0.3rem;">Años en Uruguay</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Hablemos</p>
+      <h2 class="section-title">Contacto</h2>
+    </div>
+  </div>
+
+  <div class="contacto-grid">
+    <div class="contacto-info">
+      <h3>Visitanos en el showroom</h3>
+      <p>Estamos de lunes a sábado de 9:00 a 19:00 hs. Los domingos de 10:00 a 14:00 hs. Nuestros asesores te esperan para ayudarte a elegir la moto ideal.</p>
+
+      <div class="dato-contacto">
+        <div class="dato-icon">📍</div>
+        <div class="dato-texto">
+          <strong>Dirección</strong>
+          Av. Luis Alberto de Herrera 1278, Pocitos, Montevideo
+        </div>
+      </div>
+      <div class="dato-contacto">
+        <div class="dato-icon">📞</div>
+        <div class="dato-texto">
+          <strong>Teléfono</strong>
+          +598 2 710 4400
+        </div>
+      </div>
+      <div class="dato-contacto">
+        <div class="dato-icon">💬</div>
+        <div class="dato-texto">
+          <strong>WhatsApp</strong>
+          +598 99 123 456
+        </div>
+      </div>
+      <div class="dato-contacto">
+        <div class="dato-icon">✉️</div>
+        <div class="dato-texto">
+          <strong>Email</strong>
+          ventas@nanymotos.com.uy
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <form class="form-grid" id="contactForm" onsubmit="enviarFormulario(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="tel">Teléfono</label>
+            <input type="tel" id="tel" placeholder="099 xxx xxx">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="interes">Me interesa</label>
+          <select id="interes">
+            <option value="">Seleccioná una opción</option>
+            <option>Comprar una moto nueva</option>
+            <option>Vender / tasar mi moto</option>
+            <option>Servicio técnico</option>
+            <option>Financiación</option>
+            <option>Accesorios y repuestos</option>
+            <option>Otra consulta</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="msg">Mensaje</label>
+          <textarea id="msg" placeholder="Contanos qué necesitás..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; border:none; padding:1rem;">Enviar consulta</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NANY<span>MOTOS</span></div>
+  <p class="footer-text">© 2024 Nany Motos · Av. L.A. de Herrera 1278, Pocitos, Montevideo · Uruguay</p>
+  <div class="footer-social">
+    <a href="#" class="social-link">in</a>
+    <a href="#" class="social-link">ig</a>
+    <a href="#" class="social-link">fb</a>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="cerrarModal()">✕</button>
+    <div class="modal-img" id="modalImg"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- NOTIFICACIÓN -->
+<div class="notificacion" id="notif"></div>
+
+<script>
+const motos = [
+  {
+    id:1, marca:'Honda', modelo:'CB 300R', categoria:'naked',
+    cc:300, hp:31, peso:'143 kg', badge:'nuevo',
+    precioUSD: 4290,
+    color:'#C8001E',
+    desc:'La naked perfecta para la ciudad. Liviana, ágil y con el confiable motor monocilíndrico de Honda. Ideal para el tráfico de Montevideo.',
+    specs:[{l:'Motor',v:'300cc'},{l:'Potencia',v:'31 HP'},{l:'Peso',v:'143 kg'},{l:'Consumo',v:'3.8L/100km'}]
+  },
+  {
+    id:2, marca:'Yamaha', modelo:'MT-07', categoria:'naked',
+    cc:689, hp:73, peso:'184 kg', badge:'oferta',
+    precioUSD: 8900,
+    color:'#E85D04',
+    desc:'La MT-07 redefine la categoría naked. Su motor bicilíndrico de 689cc entrega una experiencia de conducción adictiva y muy versátil.',
+    specs:[{l:'Motor',v:'689cc'},{l:'Potencia',v:'73 HP'},{l:'Peso',v:'184 kg'},{l:'Consumo',v:'5.2L/100km'}]
+  },
+  {
+    id:3, marca:'KTM', modelo:'390 Adventure', categoria:'aventura',
+    cc:373, hp:44, peso:'177 kg', badge:'nuevo',
+    precioUSD: 6750,
+    color:'#FF6600',
+    desc:'La pequeña aventurera de KTM está lista para cualquier camino. Con ABS offroad y TFT disponible, es la compañera perfecta para explorar Uruguay.',
+    specs:[{l:'Motor',v:'373cc'},{l:'Potencia',v:'44 HP'},{l:'Peso',v:'177 kg'},{l:'Consumo',v:'4.5L/100km'}]
+  },
+  {
+    id:4, marca:'Royal Enfield', modelo:'Himalayan 450', categoria:'aventura',
+    cc:452, hp:40, peso:'196 kg', badge:'nuevo',
+    precioUSD: 7200,
+    color:'#8B7355',
+    desc:'La nueva Himalayan 450 trae tecnología moderna con alma clásica. Perfecta para largas rutas y aventuras off-road en territorio uruguayo.',
+    specs:[{l:'Motor',v:'452cc'},{l:'Potencia',v:'40 HP'},{l:'Peso',v:'196 kg'},{l:'Consumo',v:'4.8L/100km'}]
+  },
+  {
+    id:5, marca:'Honda', modelo:'CBR 600RR', categoria:'sport',
+    cc:599, hp:120, peso:'194 kg', badge:'',
+    precioUSD: 13900,
+    color:'#C8001E',
+    desc:'La supersport por excelencia de Honda. Para los que buscan la emoción más pura en cada curva, en circuito y en ruta.',
+    specs:[{l:'Motor',v:'599cc'},{l:'Potencia',v:'120 HP'},{l:'Peso',v:'194 kg'},{l:'Consumo',v:'6.8L/100km'}]
+  },
+  {
+    id:6, marca:'Yamaha', modelo:'XMAX 300', categoria:'scooter',
+    cc:292, hp:28, peso:'179 kg', badge:'oferta',
+    precioUSD: 5100,
+    color:'#1a1a2e',
+    desc:'El maxi-scooter premium para moverse en Montevideo con comodidad y estilo. Gran espacio bajo el asiento y tecnología de vanguardia.',
+    specs:[{l:'Motor',v:'292cc'},{l:'Potencia',v:'28 HP'},{l:'Peso',v:'179 kg'},{l:'Consumo',v:'3.6L/100km'}]
+  },
+  {
+    id:7, marca:'Royal Enfield', modelo:'Meteor 350', categoria:'custom',
+    cc:349, hp:20, peso:'191 kg', badge:'',
+    precioUSD: 4800,
+    color:'#6B3A2A',
+    desc:'La Meteor 350 evoca los clásicos de la era dorada del motociclismo. Estilo, carácter y la confiabilidad de Royal Enfield.',
+    specs:[{l:'Motor',v:'349cc'},{l:'Potencia',v:'20 HP'},{l:'Peso',v:'191 kg'},{l:'Consumo',v:'3.4L/100km'}]
+  },
+  {
+    id:8, marca:'KTM', modelo:'Duke 790', categoria:'naked',
+    cc:799, hp:105, peso:'189 kg', badge:'agotado',
+    precioUSD: 10500,
+    color:'#FF6600',
+    desc:'La Duke 790 es pura emoción embotellada. Su motor LC8c de dos cilindros entrega una potencia excepcional con un sonido inconfundible.',
+    specs:[{l:'Motor',v:'799cc'},{l:'Potencia',v:'105 HP'},{l:'Peso',v:'189 kg'},{l:'Consumo',v:'5.9L/100km'}]
+  },
+];
+
+function svgMoto(color='#C8001E', size=180) {
+  return `<svg viewBox="0 0 460 280" width="${size}" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="110" cy="200" r="65" stroke="#2a2a2a" stroke-width="8" fill="none"/>
+    <circle cx="110" cy="200" r="48" stroke="#1e1e1e" stroke-width="5" fill="none"/>
+    <circle cx="110" cy="200" r="16" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
+    <line x1="110" y1="152" x2="110" y2="184" stroke="#333" stroke-width="2"/>
+    <line x1="110" y1="216" x2="110" y2="248" stroke="#333" stroke-width="2"/>
+    <line x1="62" y1="200" x2="94" y2="200" stroke="#333" stroke-width="2"/>
+    <line x1="126" y1="200" x2="158" y2="200" stroke="#333" stroke-width="2"/>
+    <line x1="76" y1="166" x2="100" y2="190" stroke="#333" stroke-width="2"/>
+    <line x1="120" y1="210" x2="144" y2="234" stroke="#333" stroke-width="2"/>
+    <line x1="144" y1="166" x2="120" y2="190" stroke="#333" stroke-width="2"/>
+    <line x1="100" y1="210" x2="76" y2="234" stroke="#333" stroke-width="2"/>
+    <circle cx="350" cy="200" r="65" stroke="#2a2a2a" stroke-width="8" fill="none"/>
+    <circle cx="350" cy="200" r="48" stroke="#1e1e1e" stroke-width="5" fill="none"/>
+    <circle cx="350" cy="200" r="16" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
+    <line x1="350" y1="152" x2="350" y2="184" stroke="#333" stroke-width="2"/>
+    <line x1="350" y1="216" x2="350" y2="248" stroke="#333" stroke-width="2"/>
+    <line x1="302" y1="200" x2="334" y2="200" stroke="#333" stroke-width="2"/>
+    <line x1="366" y1="200" x2="398" y2="200" stroke="#333" stroke-width="2"/>
+    <line x1="316" y1="166" x2="340" y2="190" stroke="#333" stroke-width="2"/>
+    <line x1="360" y1="210" x2="384" y2="234" stroke="#333" stroke-width="2"/>
+    <line x1="384" y1="166" x2="360" y2="190" stroke="#333" stroke-width="2"/>
+    <line x1="340" y1="210" x2="316" y2="234" stroke="#333" stroke-width="2"/>
+    <path d="M158 190 L185 135 L255 122 L310 138 L335 162 L350 142" stroke="${color}" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M185 135 L195 190" stroke="#2a2a2a" stroke-width="4" fill="none"/>
+    <path d="M255 122 L245 190" stroke="#2a2a2a" stroke-width="4" fill="none"/>
+    <rect x="195" y="165" width="90" height="54" rx="4" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+    <rect x="205" y="174" width="30" height="36" rx="2" fill="#222"/>
+    <rect x="242" y="174" width="36" height="36" rx="2" fill="#222"/>
+    <path d="M245 122 C260 102 310 95 340 108 L360 128 L335 162 L310 138 Z" fill="#111" stroke="${color}" stroke-width="2.5"/>
+    <path d="M185 135 C210 118 250 115 255 122 L245 190 L195 190 Z" fill="#141414" stroke="#2a2a2a" stroke-width="1.5"/>
+    <path d="M335 130 C360 116 395 122 408 145 L398 172 L350 158 Z" fill="#0f0f0f" stroke="#333" stroke-width="1.5"/>
+    <ellipse cx="402" cy="142" rx="18" ry="13" fill="#0d0d0d" stroke="${color}" stroke-width="2.5"/>
+    <ellipse cx="402" cy="142" rx="10" ry="7" fill="${color}" opacity="0.45"/>
+    <path d="M195 136 C220 124 262 120 272 124 L265 142 L192 144 Z" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/>
+    <path d="M195 215 C155 222 128 215 110 222" stroke="#555" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <line x1="335" y1="162" x2="345" y2="200" stroke="#2a2a2a" stroke-width="6" stroke-linecap="round"/>
+    <line x1="348" y1="150" x2="358" y2="200" stroke="#2a2a2a" stroke-width="6" stroke-linecap="round"/>
+    <path d="M340 128 C356 114 382 112 398 124" stroke="#444" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <circle cx="398" cy="124" r="5" fill="#555"/>
+  </svg>`;
+}
+
+function renderMotos(filtro='todas') {
+  const grid = document.getElementById('motos-grid');
+  const lista = filtro === 'todas' ? motos : motos.filter(m => m.categoria === filtro);
+  grid.innerHTML = lista.map(m => `
+    <div class="moto-card" onclick="abrirModal(${m.id})">
+      <div class="moto-img-wrap">
+        ${svgMoto(m.color)}
+        ${m.badge ? `<span class="moto-badge badge-${m.badge}">${m.badge === 'nuevo' ? 'Nuevo' : m.badge === 'oferta' ? 'Oferta' : 'Agotado'}</span>` : ''}
+      </div>
+      <div class="moto-info">
+        <p class="moto-marca">${m.marca}</p>
+        <h3 class="moto-modelo">${m.modelo}</h3>
+        <div class="moto-specs">
+          <span>${m.cc}cc</span>
+          <span>·</span>
+          <span>${m.hp} HP</span>
+          <span>·</span>
+          <span>${m.peso}</span>
+        </div>
+        <div class="moto-precio">
+          <div class="precio-usd"><span>USD</span>${m.precioUSD.toLocaleString()}</div>
+          <button class="btn-ver">Ver detalles</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderMotos(btn.dataset.filter);
+  });
+});
+
+function abrirModal(id) {
+  const m = motos.find(x => x.id === id);
+  if (!m) return;
+  document.getElementById('modalImg').innerHTML = svgMoto(m.color, 260);
+  document.getElementById('modalBody').innerHTML = `
+    <p class="modal-marca">${m.marca} · ${m.categoria.charAt(0).toUpperCase()+m.categoria.slice(1)}</p>
+    <h2 class="modal-modelo">${m.modelo}</h2>
+    <p style="font-size:0.82rem;color:#666;line-height:1.7;">${m.desc}</p>
+    <div class="modal-specs-grid">
+      ${m.specs.map(s=>`<div class="modal-spec"><p class="modal-spec-label">${s.l}</p><p class="modal-spec-val">${s.v}</p></div>`).join('')}
+    </div>
+    <p class="modal-precio"><small>Precio de lista (USD)</small>$${m.precioUSD.toLocaleString()}</p>
+    <button class="btn-primary" style="width:100%;border:none;padding:0.9rem;" onclick="consultarMoto('${m.marca} ${m.modelo}')">Consultar disponibilidad</button>
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarModal(e) {
+  if (!e || e.target === document.getElementById('modalOverlay') || !e.target) {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+function consultarMoto(nombre) {
+  cerrarModal();
+  document.getElementById('interes').value = 'Comprar una moto nueva';
+  document.getElementById('msg').value = `Hola, me interesa la ${nombre}. ¿Pueden darme información sobre disponibilidad y financiación?`;
+  document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+  mostrarNotificacion('✓ Moto seleccionada. Completá el formulario de contacto.');
+}
+
+function enviarFormulario(e) {
+  e.preventDefault();
+  mostrarNotificacion('✓ ¡Consulta enviada! Te contactaremos pronto.');
+  e.target.reset();
+}
+
+function mostrarNotificacion(msg) {
+  const n = document.getElementById('notif');
+  n.textContent = msg;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3500);
+}
+
+document.addEventListener('keydown', e => { if(e.key==='Escape') cerrarModal(); });
+
+renderMotos();
+</script>
+</body>
+</html>
