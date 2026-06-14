@@ -1,1 +1,260 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nany Motos | Repuestos y Accesorios</title>
+    <style>
+        :root {
+            --primary: #e60000;
+            --dark: #121212;
+            --gray: #2b2b2b;
+            --light: #f4f4f4;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+        }
+
+        /* Navegación */
+        header {
+            background-color: var(--gray);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .cart {
+            background-color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cart:hover {
+            background-color: #cc0000;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        /* Catálogo de Repuestos */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background-color: #3d3d3d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card-price {
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn-add {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--primary);
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 80%;
+        }
+
+        .btn-add:hover {
+            background-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            color: #888;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Nany <span>Motos</span></div>
+        <div class="cart" onclick="verCarrito()">
+            🛒 Carrito: <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>TODO PARA TU MOTO</h1>
+        <p>Service Oficial Bajaj | Repuestos multimarca, accesorios y la mejor atención en La Teja.</p>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Repuestos Destacados</h2>
+        <div class="grid" id="productos-grid">
+            </div>
+    </div>
+
+    <footer>
+        <p><strong>Nany Motos</strong> - Av. Carlos María Ramírez esq. Carlos Tellier, Montevideo, Uruguay.</p>
+        <p>Teléfono: 2307 9869</p>
+        <p>© 2026 Nany Motos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Base de datos simulada de los productos basados en Nany Motos
+        const productos = [
+            { id: 1, nombre: "Casco Integral LS2 FF816", precio: 3490, imgInfo: "Imagen Casco LS2" },
+            { id: 2, nombre: "Cubierta Pirelli Super City 90/90-18", precio: 2500, imgInfo: "Imagen Cubierta Pirelli" },
+            { id: 3, nombre: "Caño de Escape Deportivo", precio: 3290, imgInfo: "Imagen Escape" },
+            { id: 4, nombre: "Aceite Motul 3000 4T 20w50", precio: 595, imgInfo: "Imagen Aceite Motul" },
+            { id: 5, nombre: "Juego de Espejos Universales", precio: 450, imgInfo: "Imagen Espejos" },
+            { id: 6, nombre: "Cadena de Distribución 110cc", precio: 390, imgInfo: "Imagen Cadena" }
+        ];
+
+        let carritoCount = 0;
+        let totalPesos = 0;
+
+        // Renderizar productos en el HTML
+        const grid = document.getElementById('productos-grid');
+        
+        productos.forEach(prod => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-img">[ ${prod.imgInfo} ]</div>
+                <div class="card-content">
+                    <h3 class="card-title">${prod.nombre}</h3>
+                    <div class="card-price">$${prod.precio}</div>
+                    <button class="btn-add" onclick="agregarAlCarrito('${prod.nombre}', ${prod.precio})">
+                        Añadir al carrito
+                    </button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        // Función para agregar al carrito
+        function agregarAlCarrito(nombre, precio) {
+            carritoCount++;
+            totalPesos += precio;
+            
+            // Actualizar la interfaz
+            document.getElementById('cart-count').innerText = carritoCount;
+            
+            // Feedback visual simple
+            alert(`¡Agregado con éxito!\nProducto: ${nombre}\nSubtotal de tu compra: $${totalPesos}`);
+        }
+
+        // Función para ver el carrito
+        function verCarrito() {
+            if (carritoCount === 0) {
+                alert("Tu carrito está vacío. ¡Agrega algunos repuestos!");
+            } else {
+                alert(`Tienes ${carritoCount} artículo(s) en tu carrito.\nTotal a pagar: $${totalPesos}\n¡Dirígete a la tienda física en La Teja para retirarlos!`);
+            }
+        }
+    </script>
+</body>
+</html>
