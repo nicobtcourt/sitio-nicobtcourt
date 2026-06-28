@@ -1,1 +1,832 @@
 
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nany Motos · Repuestos, Accesorios y Service en La Teja, Montevideo</title>
+<meta name="description" content="Nany Motos: repuestos, accesorios, indumentaria, service y venta de motos nuevas y usadas. Distribuidor oficial Bajaj Uruguay. Carlos María Ramírez 643 esq. Carlos Tellier, La Teja, Montevideo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --negro: #0a0a0a;
+    --panel: #161616;
+    --panel-2: #1f1f1f;
+    --naranja: #ff6a00;
+    --naranja-claro: #ff9244;
+    --hueso: #f3efe6;
+    --gris: #8a8a86;
+    --gris-borde: #2b2b2b;
+    --max: 1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--negro);
+    color:var(--hueso);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  ::selection{background:var(--naranja);color:var(--negro);}
+
+  /* ---------- utilidades ---------- */
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    color:var(--naranja);
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-size:13px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px;height:2px;
+    background:var(--naranja);
+    display:inline-block;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    font-size:14px;
+    padding:14px 28px;
+    border-radius:2px;
+    border:2px solid var(--naranja);
+    transition:transform .18s ease, background .18s ease, color .18s ease;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn-fill{background:var(--naranja);color:var(--negro);}
+  .btn-fill:hover{background:var(--naranja-claro);transform:translateY(-2px);}
+  .btn-ghost{background:transparent;color:var(--hueso);}
+  .btn-ghost:hover{background:var(--naranja);color:var(--negro);transform:translateY(-2px);}
+
+  /* franja de taller (firma visual) */
+  .franja{
+    height:14px;
+    width:100%;
+    background:repeating-linear-gradient(
+      -45deg,
+      var(--naranja) 0 18px,
+      var(--negro) 18px 36px
+    );
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(10,10,10,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--gris-borde);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+    max-width:var(--max);margin:0 auto;
+  }
+  .logo{
+    font-family:'Oswald',sans-serif;
+    font-weight:700;
+    font-size:22px;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    display:flex;align-items:baseline;gap:6px;
+  }
+  .logo span{color:var(--naranja);}
+  .navlinks{display:flex;gap:32px;align-items:center;}
+  .navlinks a{
+    font-family:'Oswald',sans-serif;
+    font-size:13px;letter-spacing:0.08em;
+    text-transform:uppercase;font-weight:500;
+    color:var(--gris);
+    transition:color .15s ease;
+    position:relative;
+  }
+  .navlinks a:hover{color:var(--hueso);}
+  .navlinks a.cta{color:var(--naranja);}
+  .navburger{display:none;background:none;border:none;color:var(--hueso);font-size:26px;cursor:pointer;}
+
+  @media (max-width:860px){
+    .navlinks{
+      position:fixed;top:64px;right:0;left:0;
+      background:var(--panel);
+      flex-direction:column;
+      padding:24px;
+      gap:20px;
+      border-bottom:1px solid var(--gris-borde);
+      transform:translateY(-110%);
+      transition:transform .25s ease;
+    }
+    .navlinks.open{transform:translateY(0);}
+    .navburger{display:block;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding-top:90px;
+    background:
+      radial-gradient(ellipse at 75% 30%, rgba(255,106,0,0.16), transparent 55%),
+      linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 100%);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:linear-gradient(180deg, transparent, black 30%, black 70%, transparent);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:48px;
+    align-items:center;
+    width:100%;
+    position:relative;
+    z-index:2;
+  }
+  .plate{
+    display:inline-block;
+    border:2px solid var(--naranja);
+    color:var(--naranja);
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:0.12em;
+    padding:6px 14px;
+    margin-bottom:22px;
+    text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:clamp(42px, 6.4vw, 84px);
+    line-height:0.98;
+    font-weight:700;
+    color:var(--hueso);
+  }
+  .hero h1 .accent{color:var(--naranja);}
+  .hero p.lead{
+    margin-top:22px;
+    font-size:18px;
+    line-height:1.55;
+    color:#cfcac0;
+    max-width:480px;
+  }
+  .hero-ctas{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;}
+
+  .hero-meta{
+    margin-top:46px;
+    display:flex;
+    gap:36px;
+    flex-wrap:wrap;
+  }
+  .hero-meta div{border-left:2px solid var(--naranja);padding-left:14px;}
+  .hero-meta .num{
+    font-family:'Oswald',sans-serif;
+    font-size:26px;font-weight:700;color:var(--hueso);
+    display:block;
+  }
+  .hero-meta .lbl{font-size:12px;color:var(--gris);letter-spacing:0.05em;text-transform:uppercase;}
+
+  /* panel visual del hero: "placa" de taller */
+  .hero-art{
+    position:relative;
+    aspect-ratio:1/1.05;
+    background:var(--panel);
+    border:1px solid var(--gris-borde);
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:28px;
+    overflow:hidden;
+  }
+  .hero-art::after{
+    content:"";
+    position:absolute;
+    right:-40px;bottom:-40px;
+    width:240px;height:240px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,106,0,0.35), transparent 70%);
+  }
+  .wheel{
+    width:120px;height:120px;
+    border-radius:50%;
+    border:6px solid var(--naranja);
+    position:relative;
+    margin:0 auto;
+    animation:spin 14s linear infinite;
+  }
+  .wheel::before{
+    content:"";
+    position:absolute;inset:14px;
+    border-radius:50%;
+    border:2px dashed var(--gris-borde);
+  }
+  .wheel::after{
+    content:"";
+    position:absolute;
+    top:50%;left:50%;
+    width:10px;height:10px;
+    background:var(--naranja);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @media (prefers-reduced-motion: reduce){.wheel{animation:none;}}
+
+  .art-tag{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    font-size:13px;
+    letter-spacing:0.1em;
+    color:var(--gris);
+  }
+  .art-title{
+    font-family:'Oswald',sans-serif;
+    font-size:30px;font-weight:700;
+    color:var(--hueso);
+    line-height:1.1;
+    margin-top:8px;
+  }
+  .art-title .accent{color:var(--naranja);}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-art{order:-1;max-width:340px;margin:0 auto;}
+  }
+
+  /* ---------- marquee marcas ---------- */
+  .marquee-wrap{
+    background:var(--naranja);
+    color:var(--negro);
+    overflow:hidden;
+    padding:14px 0;
+  }
+  .marquee{
+    display:flex;
+    width:max-content;
+    animation:scroll 26s linear infinite;
+    gap:60px;
+  }
+  .marquee span{
+    font-family:'Oswald',sans-serif;
+    font-weight:700;
+    font-size:16px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    white-space:nowrap;
+  }
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion: reduce){.marquee{animation:none;}}
+
+  /* ---------- secciones genéricas ---------- */
+  section{padding:100px 0;}
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:56px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-size:clamp(32px,4.2vw,52px);
+    font-weight:700;
+    color:var(--hueso);
+    margin-top:14px;
+  }
+  .section-head p{color:var(--gris);max-width:380px;font-size:15px;line-height:1.6;}
+
+  /* ---------- servicios ---------- */
+  .services{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--gris-borde);
+    border:1px solid var(--gris-borde);
+  }
+  .service{
+    background:var(--negro);
+    padding:36px 28px;
+    transition:background .2s ease;
+    position:relative;
+  }
+  .service:hover{background:var(--panel);}
+  .service .n{
+    font-family:'Oswald',sans-serif;
+    color:var(--naranja);
+    font-size:13px;
+    letter-spacing:0.1em;
+  }
+  .service h3{
+    font-size:20px;
+    margin-top:18px;
+    color:var(--hueso);
+    font-weight:600;
+  }
+  .service p{
+    margin-top:12px;
+    font-size:14px;
+    color:var(--gris);
+    line-height:1.6;
+  }
+  @media (max-width:980px){.services{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.services{grid-template-columns:1fr;}}
+
+  /* ---------- bajaj banda ---------- */
+  .bajaj{
+    background:var(--panel);
+    border-top:1px solid var(--gris-borde);
+    border-bottom:1px solid var(--gris-borde);
+    padding:70px 0;
+  }
+  .bajaj-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .bajaj-badge{
+    display:inline-flex;align-items:center;gap:12px;
+    border:1px solid var(--naranja);
+    color:var(--naranja);
+    padding:8px 16px;
+    font-family:'Oswald',sans-serif;
+    font-size:13px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .bajaj h2{font-size:clamp(28px,3.6vw,42px);color:var(--hueso);}
+  .bajaj p{color:#cfcac0;margin-top:16px;line-height:1.7;max-width:520px;}
+  .bajaj-models{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+  }
+  .model-card{
+    background:var(--negro);
+    border:1px solid var(--gris-borde);
+    padding:22px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .model-card:hover{border-color:var(--naranja);transform:translateY(-3px);}
+  .model-card .tag{font-size:11px;color:var(--naranja);letter-spacing:0.1em;font-family:'Oswald',sans-serif;}
+  .model-card h4{font-size:20px;margin-top:8px;color:var(--hueso);font-family:'Oswald',sans-serif;font-weight:600;}
+  .model-card .desc{font-size:13px;color:var(--gris);margin-top:8px;line-height:1.5;}
+  @media (max-width:860px){.bajaj-grid{grid-template-columns:1fr;}}
+
+  /* ---------- galería / taller ---------- */
+  .taller{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .taller-visual{
+    background:var(--panel);
+    border:1px solid var(--gris-borde);
+    padding:36px;
+    position:relative;
+  }
+  .taller-visual .stripe-corner{
+    position:absolute;top:0;left:0;width:60px;height:60px;
+    background:repeating-linear-gradient(45deg, var(--naranja) 0 8px, transparent 8px 16px);
+    opacity:0.5;
+  }
+  .stat-row{display:flex;justify-content:space-between;border-bottom:1px solid var(--gris-borde);padding:18px 0;}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-row .label{color:var(--gris);font-size:14px;}
+  .stat-row .value{font-family:'Oswald',sans-serif;color:var(--hueso);font-weight:600;font-size:15px;}
+  .taller-text ul{list-style:none;margin-top:24px;}
+  .taller-text li{
+    padding:14px 0;
+    border-bottom:1px solid var(--gris-borde);
+    display:flex;gap:14px;align-items:flex-start;
+    color:#cfcac0;font-size:15px;line-height:1.5;
+  }
+  .taller-text li::before{
+    content:"";
+    width:8px;height:8px;
+    background:var(--naranja);
+    flex-shrink:0;
+    margin-top:6px;
+  }
+  @media (max-width:900px){.taller{grid-template-columns:1fr;}}
+
+  /* ---------- ubicacion ---------- */
+  .ubic{background:var(--panel);border-top:1px solid var(--gris-borde);}
+  .ubic-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+  .ubic-info{padding:80px 48px;}
+  .ubic-info .item{margin-bottom:28px;}
+  .ubic-info .item .k{font-size:12px;color:var(--naranja);letter-spacing:0.1em;font-family:'Oswald',sans-serif;text-transform:uppercase;}
+  .ubic-info .item .v{font-size:17px;color:var(--hueso);margin-top:6px;font-weight:500;}
+  .ubic-info .item .v a{border-bottom:1px solid transparent;transition:border-color .15s;}
+  .ubic-info .item .v a:hover{border-color:var(--naranja);color:var(--naranja);}
+  .map-frame{
+    min-height:420px;
+    border:none;
+    width:100%;
+    height:100%;
+    filter:grayscale(0.3) contrast(1.1);
+  }
+  @media (max-width:900px){.ubic-grid{grid-template-columns:1fr;}.ubic-info{padding:56px 24px;}.map-frame{min-height:340px;}}
+
+  /* ---------- CTA final ---------- */
+  .cta-final{
+    text-align:center;
+    padding:120px 24px;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,106,0,0.18), transparent 60%),
+      var(--negro);
+  }
+  .cta-final h2{
+    font-size:clamp(34px,5vw,64px);
+    color:var(--hueso);
+  }
+  .cta-final h2 .accent{color:var(--naranja);}
+  .cta-final p{color:var(--gris);margin:18px auto 36px;max-width:460px;font-size:16px;}
+  .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--gris-borde);
+    padding:48px 0 28px;
+  }
+  .foot-grid{
+    display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;
+  }
+  .foot-col h5{
+    font-family:'Oswald',sans-serif;
+    font-size:13px;color:var(--naranja);
+    letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;
+  }
+  .foot-col p, .foot-col a{
+    color:var(--gris);font-size:14px;line-height:1.8;display:block;
+  }
+  .foot-col a:hover{color:var(--hueso);}
+  .foot-bottom{
+    margin-top:40px;padding-top:24px;border-top:1px solid var(--gris-borde);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    color:var(--gris);font-size:13px;
+  }
+
+  /* ---------- whatsapp flotante ---------- */
+  .wa-float{
+    position:fixed;
+    bottom:24px;right:24px;
+    z-index:200;
+    background:#25D366;
+    color:#0a0a0a;
+    width:60px;height:60px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    transition:transform .2s ease;
+    border:2px solid #0a0a0a;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+  .wa-float svg{width:30px;height:30px;}
+
+  /* ---------- scroll reveal ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- top bar de horario ---------- */
+  .topbar{
+    background:var(--negro);
+    border-bottom:1px solid var(--gris-borde);
+    font-family:'Oswald',sans-serif;
+    font-size:12px;
+    letter-spacing:0.06em;
+    color:var(--gris);
+    padding:8px 0;
+  }
+  .topbar .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .topbar strong{color:var(--naranja);}
+  @media (max-width:600px){.topbar .wrap{justify-content:center;text-align:center;}}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="topbar">
+    <div class="wrap">
+      <span><strong>Horario:</strong> Lun a Vie 09:00–18:00 · Sáb 09:00–14:00</span>
+      <span><strong>Envíos</strong> a todo Uruguay</span>
+    </div>
+  </div>
+  <nav class="nav">
+    <a href="#" class="logo">NANY<span>MOTOS</span></a>
+    <button class="navburger" id="burger" aria-label="Abrir menú">☰</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#bajaj">Bajaj</a>
+      <a href="#taller">El taller</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto" class="cta">Contactanos</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="plate">📍 La Teja · Montevideo</span>
+      <h1>Tu moto,<br>siempre al<br><span class="accent">100%.</span></h1>
+      <p class="lead">Repuestos, accesorios e indumentaria para todas las marcas. Service, venta de motos nuevas y usadas, y distribución oficial Bajaj Uruguay. Atención personalizada en el corazón de La Teja.</p>
+      <div class="hero-ctas">
+        <a href="#contacto" class="btn btn-fill">Hacer un pedido</a>
+        <a href="https://wa.me/59894148422" target="_blank" rel="noopener" class="btn btn-ghost">Hablar por WhatsApp</a>
+      </div>
+      <div class="hero-meta">
+        <div><span class="num">+10</span><span class="lbl">Años en La Teja</span></div>
+        <div><span class="num">100%</span><span class="lbl">Envíos a Uruguay</span></div>
+        <div><span class="num">★ 4.7</span><span class="lbl">Service oficial Bajaj</span></div>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <div>
+        <span class="art-tag">Distribuidor oficial</span>
+        <div class="art-title">BAJAJ<br><span class="accent">URUGUAY</span></div>
+      </div>
+      <div class="wheel" aria-hidden="true"></div>
+      <div>
+        <span class="art-tag">Carlos María Ramírez 643</span><br>
+        <span class="art-tag">esq. Carlos Tellier</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="franja"></div>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>REPUESTOS</span><span>•</span><span>ACCESORIOS</span><span>•</span><span>INDUMENTARIA</span><span>•</span><span>SERVICE</span><span>•</span><span>MOTOS NUEVAS Y USADAS</span><span>•</span><span>ENVÍOS A TODO EL PAÍS</span><span>•</span>
+    <span>REPUESTOS</span><span>•</span><span>ACCESORIOS</span><span>•</span><span>INDUMENTARIA</span><span>•</span><span>SERVICE</span><span>•</span><span>MOTOS NUEVAS Y USADAS</span><span>•</span><span>ENVÍOS A TODO EL PAÍS</span><span>•</span>
+  </div>
+</div>
+
+<!-- ===================== SERVICIOS ===================== -->
+<section id="servicios">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Qué ofrecemos</span>
+        <h2>Todo para tu moto,<br>bajo un mismo techo.</h2>
+      </div>
+      <p>De la rueda al casco. Trabajamos día a día para que tengas todo lo necesario, con atención personalizada y los mejores precios de La Teja.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="services reveal">
+      <div class="service">
+        <span class="n">01</span>
+        <h3>Repuestos</h3>
+        <p>Repuestos originales y alternativos para las mejores marcas. Pedales, asientos, frenos CBS y mucho más.</p>
+      </div>
+      <div class="service">
+        <span class="n">02</span>
+        <h3>Accesorios</h3>
+        <p>Todo lo necesario para resaltar tu moto entre las demás: aros, llantas premium y personalización.</p>
+      </div>
+      <div class="service">
+        <span class="n">03</span>
+        <h3>Indumentaria</h3>
+        <p>Cascos, guantes, chaquetas y pantalones de las mejores marcas, como LS2 y XSPORTS.</p>
+      </div>
+      <div class="service">
+        <span class="n">04</span>
+        <h3>Service y venta</h3>
+        <p>Service oficial autorizado Bajaj Uruguay. Motos nuevas y usadas con excelente atención.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BAJAJ ===================== -->
+<section id="bajaj" class="bajaj">
+  <div class="wrap bajaj-grid">
+    <div class="reveal">
+      <span class="bajaj-badge">🏍 Service oficial autorizado</span>
+      <h2>Distribuidores oficiales de <span style="color:var(--naranja)">Bajaj</span> en Uruguay.</h2>
+      <p>Como service oficial autorizado Bajaj Uruguay, te ofrecemos mantenimiento, repuestos originales y asesoramiento experto para tu Discover, Pulsar, Boxer o Dominar. Calidad y respaldo de marca, con la cercanía de un taller de barrio.</p>
+      <a href="#contacto" class="btn btn-fill" style="margin-top:24px;">Consultar modelos Bajaj</a>
+    </div>
+    <div class="bajaj-models reveal">
+      <div class="model-card">
+        <span class="tag">URBANA</span>
+        <h4>Discover</h4>
+        <p class="desc">Sistema de freno CBS, bajo consumo, ideal para uso diario en la ciudad.</p>
+      </div>
+      <div class="model-card">
+        <span class="tag">DEPORTIVA</span>
+        <h4>Pulsar</h4>
+        <p class="desc">Potencia y estilo deportivo para quienes buscan más adrenalina.</p>
+      </div>
+      <div class="model-card">
+        <span class="tag">TRABAJO</span>
+        <h4>Boxer</h4>
+        <p class="desc">Resistencia y bajo mantenimiento, pensada para el uso intensivo diario.</p>
+      </div>
+      <div class="model-card">
+        <span class="tag">AVENTURA</span>
+        <h4>Dominar</h4>
+        <p class="desc">Para los que buscan recorrer rutas largas con comodidad y carácter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EL TALLER ===================== -->
+<section id="taller">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Mayo amarillo · Conciencia vial</span>
+        <h2>Manejá con responsabilidad.<br>Volvé a casa.</h2>
+      </div>
+    </div>
+    <div class="taller reveal">
+      <div class="taller-visual">
+        <span class="stripe-corner"></span>
+        <div class="stat-row"><span class="label">Atención</span><span class="value">Personalizada</span></div>
+        <div class="stat-row"><span class="label">Pago</span><span class="value">Efectivo · Tarjetas · MercadoPago</span></div>
+        <div class="stat-row"><span class="label">Envío Montevideo</span><span class="value">24 hs</span></div>
+        <div class="stat-row"><span class="label">Envío al interior</span><span class="value">Sin costo de agencia</span></div>
+        <div class="stat-row"><span class="label">Horario</span><span class="value">Lun-Vie 09-18 · Sáb 09-14</span></div>
+      </div>
+      <div class="taller-text">
+        <p style="color:#cfcac0;line-height:1.7;font-size:16px;">El casco no te hace menos libre: te da la oportunidad de volver a casa. Por eso, además de venderte lo mejor para tu moto, te acompañamos con conciencia vial.</p>
+        <ul>
+          <li>Usá el casco bien ajustado en cada viaje, corto o largo.</li>
+          <li>Revisá frenos y luces antes de salir a la ruta.</li>
+          <li>Consultá nuestras ofertas en indumentaria de seguridad LS2 y XSPORTS.</li>
+          <li>Alguien te espera en casa: manejá con responsabilidad.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== UBICACION ===================== -->
+<section id="ubicacion" class="ubic">
+  <div class="ubic-grid">
+    <div class="ubic-info reveal">
+      <span class="eyebrow">Visitanos</span>
+      <h2 style="margin-top:14px;font-size:clamp(28px,3.6vw,40px);">Te esperamos en<br>La Teja.</h2>
+      <div style="margin-top:36px;">
+        <div class="item">
+          <div class="k">Dirección</div>
+          <div class="v">Carlos María Ramírez 643 esq. Carlos Tellier, La Teja, Montevideo</div>
+        </div>
+        <div class="item">
+          <div class="k">Teléfono / WhatsApp</div>
+          <div class="v"><a href="https://wa.me/59894148422" target="_blank" rel="noopener">094 148 422</a> · <a href="https://wa.me/59895045849" target="_blank" rel="noopener">095 045 849</a></div>
+        </div>
+        <div class="item">
+          <div class="k">Fijo</div>
+          <div class="v"><a href="tel:+59823079869">2307 9869</a></div>
+        </div>
+        <div class="item">
+          <div class="k">Email</div>
+          <div class="v"><a href="mailto:nanymotos2011@hotmail.com">nanymotos2011@hotmail.com</a></div>
+        </div>
+        <div class="item">
+          <div class="k">Horario de atención</div>
+          <div class="v">Lunes a Viernes 09:00–18:00 · Sábados 09:00–14:00</div>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Carlos+Maria+Ramirez+643+La+Teja+Montevideo" target="_blank" rel="noopener" class="btn btn-fill" style="margin-top:28px;">Cómo llegar</a>
+    </div>
+    <iframe class="map-frame reveal" loading="lazy" allowfullscreen
+      src="https://www.google.com/maps?q=Carlos+Maria+Ramirez+643,+Montevideo,+Uruguay&output=embed">
+    </iframe>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="cta-final">
+  <div class="reveal">
+    <h2>¿Buscás repuestos o<br>tu próxima <span class="accent">moto</span>?</h2>
+    <p>Escribinos ahora y te respondemos al toque. Atención personalizada, los mejores precios de La Teja.</p>
+    <div class="cta-row">
+      <a href="https://wa.me/59894148422" target="_blank" rel="noopener" class="btn btn-fill">WhatsApp 094 148 422</a>
+      <a href="tel:+59823079869" class="btn btn-ghost">Llamar al 2307 9869</a>
+    </div>
+  </div>
+</section>
+
+<div class="franja"></div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col" style="max-width:280px;">
+        <h5>Nany Motos</h5>
+        <p>Repuestos, accesorios e indumentaria para motos. Service y venta, distribuidor oficial Bajaj Uruguay. La Teja, Montevideo.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <a href="tel:+59823079869">2307 9869</a>
+        <a href="https://wa.me/59894148422" target="_blank" rel="noopener">094 148 422</a>
+        <a href="mailto:nanymotos2011@hotmail.com">nanymotos2011@hotmail.com</a>
+      </div>
+      <div class="foot-col">
+        <h5>Ubicación</h5>
+        <a href="https://www.google.com/maps/search/?api=1&query=Carlos+Maria+Ramirez+643+La+Teja+Montevideo" target="_blank" rel="noopener">Carlos María Ramírez 643<br>esq. Carlos Tellier, La Teja</a>
+      </div>
+      <div class="foot-col">
+        <h5>Horario</h5>
+        <p>Lun a Vie 09:00–18:00</p>
+        <p>Sábados 09:00–14:00</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Nany Motos · La Teja, Montevideo, Uruguay</span>
+      <span>#NanyMotos</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== WHATSAPP FLOTANTE ===================== -->
+<a href="https://wa.me/59894148422?text=Hola%2C%20quer%C3%ADa%20consultar%20por%20un%20producto" target="_blank" rel="noopener" class="wa-float" aria-label="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.02 3.6a8.94 8.94 0 0 0-7.7 13.45L3 21l4.06-1.3a8.9 8.9 0 0 0 4.96 1.49h.01a8.94 8.94 0 0 0 8.93-8.92 8.86 8.86 0 0 0-3.36-6.95ZM12.03 19.7h-.01a7.4 7.4 0 0 1-3.78-1.04l-.27-.16-2.81.9.92-2.75-.18-.28a7.42 7.42 0 0 1 11.6-9.2 7.36 7.36 0 0 1 2.18 5.25 7.42 7.42 0 0 1-7.65 7.28Zm4.07-5.56c-.22-.11-1.31-.65-1.52-.72-.2-.08-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.05-.22-.11-.94-.35-1.79-1.1-.66-.59-1.11-1.32-1.24-1.54-.13-.22-.01-.34.1-.45.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.11-.62-1.5-.85-2.05-.22-.53-.45-.46-.62-.47-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.34-.27.27-1.02 1-1.02 2.43 0 1.43 1.04 2.81 1.18 3 .15.19 2.05 3.13 4.96 4.27 2.92 1.14 2.92.76 3.45.71.53-.05 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.48-.3Z"/></svg>
+</a>
+
+<script>
+  // Año dinámico en footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Menú móvil
+  const burger = document.getElementById('burger');
+  const navlinks = document.getElementById('navlinks');
+  burger.addEventListener('click', () => {
+    navlinks.classList.toggle('open');
+    burger.textContent = navlinks.classList.contains('open') ? '✕' : '☰';
+  });
+  navlinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navlinks.classList.remove('open');
+      burger.textContent = '☰';
+    });
+  });
+
+  // Scroll reveal con IntersectionObserver
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Header: sombra al hacer scroll
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.4)';
+    } else {
+      header.style.boxShadow = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
